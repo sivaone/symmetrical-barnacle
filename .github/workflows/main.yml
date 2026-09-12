@@ -3,6 +3,7 @@ name: Generate Podcast Feed
 on:
   push:
     branches: ["main"]
+  workflow_dispatch: {}
 
 permissions: 
   contents: write
@@ -30,6 +31,6 @@ jobs:
           git config user.email "github-actions@github.com"
           git add .
           git status
-          git commit -m "Generate new feed"
+          git diff --staged --quiet || git commit -m "Generate new feed"
           git push
           
